@@ -184,7 +184,7 @@ public class BitTree {
     String line;
     try {
       while ((line = br.readLine()) != null && !line.isEmpty()) {
-        String[] parts = line.split(",", 1);
+        String[] parts = line.split(",", 2);
         this.set(parts[0], parts[1]);
       } // for
     } catch (IOException err) {
