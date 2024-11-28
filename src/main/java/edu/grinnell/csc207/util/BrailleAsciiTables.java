@@ -5,9 +5,9 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
+ * A utility class with static methods used to convert between Unicode, Braille, and ASCII.
  *
- *
- * @author Your Name Here
+ * @author David William Stroud
  * @author Samuel A. Rebelsky
  */
 public class BrailleAsciiTables {
@@ -197,15 +197,48 @@ public class BrailleAsciiTables {
   // | Static helper methods |
   // +-----------------------+
 
+  /**
+   * Load the given CSV data into the given tree.
+   * @param tree The tree into which to load the data.
+   * @param csv The CSV data to load.
+   */
+  private static void loadTree(BitTree tree, String csv) {
+    InputStream stream = new ByteArrayInputStream(csv.getBytes());
+    tree.load(stream);
+    try {
+      stream.close();
+    } catch (IOException e) {
+      // We don't care if we can't close the stream.
+    } // try/catch
+  } // loadTree(BitTree, String)
+
   // +----------------+----------------------------------------------
   // | Static methods |
   // +----------------+
 
   /**
+   * Converts a character into its Braille binary representation.
    *
+   * @param letter The letter to convert to Braille.
    */
   public static String toBraille(char letter) {
-    return "";  // STUB
+    // Make sure we've loaded the ASCII-to-braille tree.
+    if (BrailleAsciiTables.a2bTree == null) {
+      BrailleAsciiTables.a2bTree = new BitTree(8);
+      BrailleAsciiTables.loadTree(BrailleAsciiTables.a2bTree, BrailleAsciiTables.a2b);
+    } // if
+    int asciiValue = (int) letter;
+    char[] bits = new char[8];
+    for (int i = 0; i < bits.length; i++) {
+      int power = 1 << i;
+      if (asciiValue >= power) {
+        asciiValue -= power;
+        bits[i] = '1';
+      } else {
+        bits[i] = '0';
+      } // if-else
+    } // for
+    return BrailleAsciiTables.a2bTree.get(new String(bits));
   } // toBraille(char)
 
   /**
@@ -213,23 +246,22 @@ public class BrailleAsciiTables {
    */
   public static String toAscii(String bits) {
     // Make sure we've loaded the braille-to-ASCII tree.
-    if (null == b2aTree) {
-      b2aTree = new BitTree(6);
-      InputStream b2aStream = new ByteArrayInputStream(b2a.getBytes());
-      b2aTree.load(b2aStream);
-      try {
-        b2aStream.close();
-      } catch (IOException e) {
-        // We don't care if we can't close the stream.
-      } // try/catch
+    if (BrailleAsciiTables.b2aTree == null) {
+      BrailleAsciiTables.b2aTree = new BitTree(6);
+      BrailleAsciiTables.loadTree(BrailleAsciiTables.b2aTree, BrailleAsciiTables.b2a);
     } // if
-    return "";  // STUB
+    return BrailleAsciiTables.b2aTree.get(bits);
   } // toAscii(String)
 
   /**
    *
    */
   public static String toUnicode(String bits) {
-    return "";  // STUB
+    // Make sure we've loaded the Unicode-to-braille tree.
+    if (BrailleAsciiTables.b2uTree == null) {
+      BrailleAsciiTables.b2uTree = new BitTree(6);
+      BrailleAsciiTables.loadTree(BrailleAsciiTables.b2uTree, BrailleAsciiTables.b2u);
+    } // if
+    return BrailleAsciiTables.b2uTree.get(bits);
   } // toUnicode(String)
 } // BrailleAsciiTables
