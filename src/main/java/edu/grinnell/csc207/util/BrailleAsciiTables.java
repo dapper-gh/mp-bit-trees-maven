@@ -230,7 +230,7 @@ public class BrailleAsciiTables {
     int asciiValue = (int) letter;
     char[] bits = new char[8];
     for (int i = 0; i < bits.length; i++) {
-      int power = 1 << i;
+      int power = 1 << (7 - i);
       if (asciiValue >= power) {
         asciiValue -= power;
         bits[i] = '1';
