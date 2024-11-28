@@ -4,19 +4,17 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Authors**
 
-* Your name here
+* David William Stroud
 * Samuel A. Rebelsky (starter code)
 
 **Acknowledgements**
 
-*
-*
-*
+None.
 
 **Instructions for use**
 
-_Please insert instructions here._
+_Forthcoming._
 
 ---
 
-This code may be found at <https://github.com/USERNAME/mp-bit-trees-maven>. The original code may be found at <https://github.com/Grinnell-CSC207/mp-bit-trees-maven>.
+This code may be found at <https://github.com/dapper-gh/mp-bit-trees-maven>. The original code may be found at <https://github.com/Grinnell-CSC207/mp-bit-trees-maven>.
