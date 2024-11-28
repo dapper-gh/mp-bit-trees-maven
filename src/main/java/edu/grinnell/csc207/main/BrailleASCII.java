@@ -3,7 +3,6 @@ package edu.grinnell.csc207.main;
 import edu.grinnell.csc207.util.BrailleAsciiTables;
 
 import java.io.PrintWriter;
-import java.util.HexFormat;
 
 /**
  * A program that provides conversions between Braille, ASCII, and Unicode.
@@ -96,7 +95,7 @@ public class BrailleASCII {
         } else {
           String brailleBitString = BrailleAsciiTables.toBraille(c);
           String unicodeHex = BrailleAsciiTables.toUnicode(brailleBitString);
-          pen.print((char) HexFormat.fromHexDigitsToLong(unicodeHex));
+          pen.print((char) Integer.parseInt(unicodeHex, 16));
         } // if-else
       } // for
       pen.println();

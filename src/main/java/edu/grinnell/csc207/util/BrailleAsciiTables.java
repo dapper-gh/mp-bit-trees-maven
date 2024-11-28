@@ -235,18 +235,9 @@ public class BrailleAsciiTables {
           BrailleAsciiTables.ASCII_TO_BRAILE_CSV
       );
     } // if
-    int asciiValue = (int) letter;
-    char[] bits = new char[8];
-    for (int i = 0; i < bits.length; i++) {
-      int power = 1 << (7 - i);
-      if (asciiValue >= power) {
-        asciiValue -= power;
-        bits[i] = '1';
-      } else {
-        bits[i] = '0';
-      } // if-else
-    } // for
-    return BrailleAsciiTables.a2bTree.get(new String(bits));
+
+    // This way of turning a character into binary is hacky, but it works.
+    return BrailleAsciiTables.a2bTree.get(Integer.toBinaryString(letter + 256).substring(1));
   } // toBraille(char)
 
   /**
