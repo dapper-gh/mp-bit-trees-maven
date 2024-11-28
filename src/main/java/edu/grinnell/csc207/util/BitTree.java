@@ -1,9 +1,13 @@
 package edu.grinnell.csc207.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
- * Trees intended to be used in storing mappings between fixed-length 
+ * Trees intended to be used in storing mappings between fixed-length
  * sequences of bits and corresponding values.
  *
  * @author David William Stroud
@@ -132,6 +136,8 @@ public class BitTree {
    *   If the bit string cannot be found or
    *   the bit string is invalid, either due to length
    *   or character content.
+   *
+   * @return The value associated with the given bit string.
    */
   public String get(String bits) throws IndexOutOfBoundsException {
     if (bits.length() != this.bitLength) {
