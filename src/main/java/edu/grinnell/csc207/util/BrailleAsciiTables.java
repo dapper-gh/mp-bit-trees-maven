@@ -179,17 +179,17 @@ public class BrailleAsciiTables {
   // +---------------+
 
   /**
-   *
+   * The BitTree representing conversions from ASCII (as a bit string) to Braille.
    */
   static BitTree a2bTree = null;
 
   /**
-   *
+   * The BitTree representing conversions from Braille (as a bit string) to ASCII.
    */
   static BitTree b2aTree = null;
 
   /**
-   *
+   * The BitTree representing conversions from Braille (as a bit string) to Unicode (as a hex string).
    */
   static BitTree b2uTree = null;
 
@@ -242,7 +242,9 @@ public class BrailleAsciiTables {
   } // toBraille(char)
 
   /**
+   * Converts a Braille bit string to its equivalent ASCII.
    *
+   * @param bits The Braille bit string to convert.
    */
   public static String toAscii(String bits) {
     // Make sure we've loaded the braille-to-ASCII tree.
@@ -254,7 +256,9 @@ public class BrailleAsciiTables {
   } // toAscii(String)
 
   /**
+   * Converts a Braille bit string to its equivalent Unicode.
    *
+   * @param bits The Braille bit string to convert.
    */
   public static String toUnicode(String bits) {
     // Make sure we've loaded the Unicode-to-braille tree.
