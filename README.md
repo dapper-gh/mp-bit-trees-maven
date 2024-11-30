@@ -13,7 +13,20 @@ None.
 
 **Instructions for use**
 
-_Forthcoming._
+Compile the program before using it for the first time, as follows:
+```bash
+mvn clean compile -q
+```
+
+Then, execute the program as follows, where `<args>` is the command line arguments you would like to pass in:
+```bash
+mvn evec:java -q -Dexec.args="<args>"
+```
+
+Command-line arguments should be in the format `<command> <text>`. There are three supported commands:
+* `braille` - converts `<text>` from ASCII to a Braille bit string.
+* `ascii` - converts `<text>` from a Braille bit string to ASCII.
+* `unicode` - converts `<text>` from ASCII to Braille unicode characters.
 
 ---
 
